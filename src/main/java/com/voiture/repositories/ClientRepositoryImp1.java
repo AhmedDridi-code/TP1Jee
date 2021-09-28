@@ -14,8 +14,8 @@ import com.voiture.entities.Client;
 public class ClientRepositoryImp1 implements ClientRepositoryCustom {
 	@PersistenceContext
 	EntityManager entityManager;
-	public Client getClientByName(String name) {
-		Query query = entityManager.createNativeQuery("SELECT c.* FROM Client c WHERE c.name LIKE ?",Client.class);
+	public Client getClientByNom(String name) {
+		Query query = entityManager.createNativeQuery("SELECT c.* FROM Client c WHERE c.nom LIKE ?",Client.class);
 		query.setParameter(1,name +"%");
 		// TODO Auto-generated method stub
 		return (Client) query.getSingleResult();
