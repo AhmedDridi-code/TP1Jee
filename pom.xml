@@ -36,8 +36,11 @@
     <artifactId>hibernate-core</artifactId>
     <version>6.0.0.Alpha9</version>
 </dependency>
-
-
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-thymeleaf</artifactId>
+<version>2.3.5.RELEASE</version>
+</dependency>
 
 </dependencies>
 

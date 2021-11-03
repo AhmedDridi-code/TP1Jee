@@ -11,14 +11,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Modele {
+public class Agent {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	@Column(name="libelle")
-	private String libelle;
-	@OneToMany(mappedBy="modele")
-	private List<Voiture> voitures= new ArrayList<Voiture>();
+	
+	@Column(name="cin")
+	private Integer cin;
+	@Column(name="nom")
+	private String nom;
+
+	@Column(name="prenom")
+	private String prenom;
+	@OneToMany(mappedBy="client")
+	private List<Location> locations= new ArrayList<Location>();
 	
 
 }
