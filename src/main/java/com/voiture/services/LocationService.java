@@ -20,7 +20,9 @@ import com.voiture.repositories.VoitureRepository;
 public class LocationService {
 	@Autowired
 	private LocationRepository repo;
+	@Autowired
 	private ClientRepository repoClient;
+	@Autowired
 	private VoitureRepository repoVoiture;
 	
 	public Location findLocation(long id) {
