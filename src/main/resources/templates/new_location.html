@@ -16,24 +16,28 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-md-10">
-                    <form action="#" th:action="@{/addLocation}" th:object="${locationForm}" method="post">
+                    <form action="#" th:action="@{/location/save}" th:object="${locationForm}" method="post">
                         <div class="row">
                             <div class="form-group col-md-8">
-                                <select th:each="voiture : listVoiture">
-                                <option th:text="${voiture.serie}" th:field="*{voiture.id}></option>
-                                </select>
-                                 <select th:each="client : listClient">
-                                <option th:text="${client.nom}" th:field="*{client.id}"></option>
-                                </select>
-                                <input type="text" th:field="*{serie}" class="form-control"
-                                            id="serie" placeholder="Serie" />
+                                <label for="voiture" class="col-form-label">Voiture: </label> 
+                                <select th:field="*{voiture.id}" >                            
+									<option  th:each="voiture : ${listVoiture}" 
+										th:value="${voiture.id}" th:text="${voiture.serie}" id="voiture"/>
+								</select>	
                             </div>
+                             <div class="form-group col-md-8">
+                             <label for="client" class="col-form-label">Client: </label> 
+                             <select th:field="*{client.id}">
+									<option  th:each="client : ${listClient}" 
+										th:value="${client.id}" th:text="${client.nom}" id="client" />
+								</select>
+                             </div>
                             <div class="form-group col-md-8">
                                 <label for="dateDebut" class="col-form-label">Date de Debut</label> 
-                                <input type="date" th:field="${locationForm.date_debut}" class="form-control"
+                                <input type="date" th:field="${locationForm.dateDebut}" class="form-control"
                                             id="dateDebut" placeholder="date debut" />
                                              <label for="dateFin" class="col-form-label">Date de Fin</label> 
-                                <input type="date" th:field="${locationForm.date_fin}" class="form-control"
+                                <input type="date" th:field="${locationForm.dateRetour}" class="form-control"
                                             id="dateFin" placeholder="date fin" />
                             </div>
                 

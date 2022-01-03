@@ -19,6 +19,24 @@ public class Modele {
 	private String libelle;
 	@OneToMany(mappedBy="modele")
 	private List<Voiture> voitures= new ArrayList<Voiture>();
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getLibelle() {
+		return libelle;
+	}
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+	public List<Voiture> getVoitures() {
+		return voitures;
+	}
+	public void setVoitures(List<Voiture> voitures) {
+		this.voitures = voitures;
+	}
 	
 
 }

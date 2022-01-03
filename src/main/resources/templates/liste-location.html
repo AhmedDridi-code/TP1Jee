@@ -14,10 +14,10 @@
     <div class="container my-2">
     <div class="card">
     <div class="card-body">
-        <div th:switch="${listlocation}" class="container my-5">
+        <div th:switch="${listLocation}" class="container my-5">
             <p class="my-5">
-                <a href="/addLocation" class="btn btn-primary">
-                <i class="fas fa-user-plus ml-2">Ajouter location </i></a>
+                <a href="/location/add" class="btn btn-primary">
+                <i class="fas fa-user-plus ml-2"> Ajouter location </i></a>
             </p>
             <div class="col-md-10">
                 <h2 th:case="null">No record found !!</h2>
@@ -35,18 +35,19 @@
                         </thead>
                         <tbody>
                             <tr th:each="location : ${listLocation}">
-                                <td th:text="${location.voiture.serie}"></td>
+                               <!-- <td th:text="${location.voiture.serie}"></td>-->
+                               <td th:text="${location.voiture.serie}"></td>
                                 <td th:text="${location.client.nom}"></td>
-                                 <td th:text="${location.date_debut}"></td>
-                                  <td th:text="${location.date_fin}"></td>
+                                 <td th:text="${location.dateDebut}"></td>
+                                  <td th:text="${location.dateRetour}"></td>
                                 <td>
-                                    <a th:href="@{/editLocation/{id}(id=${location.id})}"
+                                    <a th:href="@{/location/edit/{id}(id=${location.id})}"
                                              class="btn btn-primary">
                                         <i class="fas fa-user-edit ml-2"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a th:href="@{/deleteLocation/{id}(id=${location.id})}"
+                                    <a th:href="@{/location/delete/{id}(id=${location.id})}"
                                               class="btn btn-primary">
                                         <i class="fas fa-user-times ml-2"></i>
                                     </a>

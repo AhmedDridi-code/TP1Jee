@@ -16,10 +16,11 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-md-10">
-                    <form action="#" th:action="@{/save}" th:object="${voitureForm}" method="post">
+                    <form action="#" th:action="@{/voiture/save}" th:object="${voitureForm}" 
+                                                                       method="post">
                         <div class="row">
                             <div class="form-group col-md-8">
-                                <label for="name" class="col-form-label">Série</label> 
+                                <label for="name" class="col-form-label">Serie</label> 
                                 <input type="text" th:field="*{serie}" class="form-control"
                                             id="serie" placeholder="Serie" />
                             </div>
@@ -28,9 +29,19 @@
                                 <input type="date" th:field="*{dateMiseEnMarche}" class="form-control"
                                             id="dateMiseEnMarche" placeholder="dateMiseEnMarche" />
                             </div>
-                
+                            
+                            
+                           <div class="form-group col-md-8">
+                                <label for="name" class="col-form-label">Modele</label> 
+                               <select >
+									<option th:field="*{modele.id}" th:each="modele : ${listModele}" 
+										th:value="${modele.id}" th:text="${modele.libelle}" />
+								</select>
+							</div>
+                           
+ 
                             <div class="col-md-6">
-                                <input type="submit" class="btn btn-primary" value="Submit"/>
+                                <input type="submit" class="btn btn-primary" value=" Submit ">
                             </div>
  
                             <input type="hidden" id="id" th:field="*{id}">

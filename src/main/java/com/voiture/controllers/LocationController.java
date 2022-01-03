@@ -15,40 +15,62 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.voiture.entities.Client;
 import com.voiture.entities.Location;
 import com.voiture.entities.Voiture;
+import com.voiture.services.ClientService;
 import com.voiture.services.LocationService;
+import com.voiture.services.VoitureService;
 
 @Controller
+@RequestMapping("/location")
 public class LocationController {
-	
-	
 	@Autowired
-	LocationService service;
-	@RequestMapping("/addLocation")
+	LocationService locationService;
+	@Autowired
+	VoitureService voitureService;
+	@Autowired
+	ClientService clientService;
+	
+	@RequestMapping("/add")
 	public String addVoitureForm(Model model) {
 		Location location = new Location();
 		model.addAttribute("locationForm", location);
-		List<Client> listClient = service.listClient();
+		List<Client> listClient = clientService.listAll();
 		model.addAttribute("listClient", listClient);
-		List<Voiture> listVoiture = service.listVoiture();
+		List<Voiture> listVoiture = voitureService.listAll();
 		model.addAttribute("listVoiture", listVoiture);
-		
 		return "new_location";	
 	}
-	@PostMapping("/addLocation")
+	
+	@PostMapping("/save")
 	public String addVoiture(@ModelAttribute("locationForm") Location location,Model model) {
-		service.saveLocation(location);
-		return "redirect:/Location";
+		//Voiture voiture = voitureService.get(location.getVoiture().getId());
+		//Client client = clientService.get(location.getClient().getId());
+		//location.setClient(client);
+		//location.setVoiture(voiture);
+		locationService.save(location);
+		return "redirect:/location";
 	}
-	@RequestMapping(value="/Location", method=RequestMethod.GET)
+	@RequestMapping(value="", method=RequestMethod.GET)
 	public String listLocation(Model model) {
-		List<Location> listLocations = service.listLocation();
-		model.addAttribute("listVoiture", listLocations);
+		List<Location> listLocations = locationService.listAll();
+		model.addAttribute("listLocation", listLocations);
 		return "liste-location";
 		}
-	@GetMapping("deleteLocation/{id}")
+	
+	@GetMapping("/delete/{id}")
 	public String deleteLocation(@PathVariable("id") long id,Model model) {
-		service.deleteLocation(id);
-		return "redirect:/Location";
+		locationService.delete(id);
+		return "redirect:/location";
+	}
+	@GetMapping("/edit/{id}")
+	public String showUpdateForm(@PathVariable("id") long id,Model model) {
+		Location location = locationService.get(id);
+		model.addAttribute("locationForm",location);
+		List<Client> listClient = clientService.listAll();
+		model.addAttribute("listClient", listClient);
+		List<Voiture> listVoiture = voitureService.listAll();
+		model.addAttribute("listVoiture", listVoiture);
+		
+		return "update-location";
 	}
 
 }

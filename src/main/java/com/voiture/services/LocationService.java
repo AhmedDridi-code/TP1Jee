@@ -20,38 +20,21 @@ import com.voiture.repositories.VoitureRepository;
 public class LocationService {
 	@Autowired
 	private LocationRepository repo;
-	@Autowired
-	private ClientRepository repoClient;
-	@Autowired
-	private VoitureRepository repoVoiture;
 	
-	public Location findLocation(long id) {
+	public Location get(long id) {
 		Location location = repo.findById(id).get();
 		return location;
 		
 	}
-	public List <Client> listClient() {
-		List <Client> listClient=new ArrayList<Client>();
-		if(repoClient.findAll().size()>1) {
-			listClient = repoClient.findAll();
-			
-		}
-		return listClient;
-		
-	}
-	public List <Voiture> listVoiture() {
-		
-		List <Voiture> listVoiture = repoVoiture.findAll();
-		return listVoiture;
-	}
-	public List<Location> listLocation(){
+
+	public List<Location> listAll(){
 		List<Location> listLocation = repo.findAll();
 		return listLocation;
 	}
-	public void saveLocation(Location location) {
+	public void save(Location location) {
 		repo.save(location);
 	}
-	public void deleteLocation(long id) {
+	public void delete(long id) {
 		repo.deleteById(id);
 	}
 	public void deleteAll() {

@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="form-group col-md-8">
                                 <label for="voiture" class="col-form-label">Voiture: </label> 
-                                <select th:field="*{voiture.id}" >                            
+                                <select th:field="*{voiture.id}">                          
 									<option  th:each="voiture : ${listVoiture}" 
 										th:value="${voiture.id}" th:text="${voiture.serie}" id="voiture"/>
 								</select>	

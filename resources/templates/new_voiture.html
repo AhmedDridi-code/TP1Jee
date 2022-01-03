@@ -16,11 +16,11 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-md-10">
-                    <form action="#" th:action="@{/save}" th:object="${voiture}" 
+                    <form action="#" th:action="@{/voiture/save}" th:object="${voitureForm}" 
                                                                        method="post">
                         <div class="row">
                             <div class="form-group col-md-8">
-                                <label for="name" class="col-form-label">Série</label> 
+                                <label for="name" class="col-form-label">Serie</label> 
                                 <input type="text" th:field="*{serie}" class="form-control"
                                             id="serie" placeholder="Serie" />
                             </div>
@@ -32,7 +32,7 @@
                             
                             
                            <div class="form-group col-md-8">
-                                <label for="name" class="col-form-label">Modèle</label> 
+                                <label for="name" class="col-form-label">Modele</label> 
                                 <select th:field="*{model.id}" >
 									<option th:each="modele : ${modelList}" 
 										th:value="${modele.id}" th:text="${modele.id}" />
